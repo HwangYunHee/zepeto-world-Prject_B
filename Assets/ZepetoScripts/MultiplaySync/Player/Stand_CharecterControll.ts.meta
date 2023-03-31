@@ -1,0 +1,33 @@
+fileFormatVersion: 2
+guid: e403bc82036069a46bcd4c11df9cdf1f
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: '{"source":"\"use strict\";\r\nObject.defineProperty(exports, \"__esModule\",
+    { value: true });\r\nconst ZEPETO_Script_1 = require(\"ZEPETO.Script\");\r\nconst
+    ZEPETO_Character_Controller_1 = require(\"ZEPETO.Character.Controller\");\r\nconst
+    UnityEngine_1 = require(\"UnityEngine\");\r\nclass CharacterController extends
+    ZEPETO_Script_1.ZepetoScriptBehaviour {\r\n    Start() {\r\n        this.playStandButton.onClick.AddListener(()
+    => {\r\n            this.localPlayerAnimator.Play(\"Stand\");\r\n        });\r\n       
+    //               ZepetoPlayers.instance.CreatePlayerWithZepetoId ( \"\" , \"[ZEPETO_ID]\"
+    , new  SpawnInfo (), true );\r\n        ZEPETO_Character_Controller_1.ZepetoPlayers.instance.OnAddedLocalPlayer.AddListener(()
+    => {\r\n            let _player = ZEPETO_Character_Controller_1.ZepetoPlayers.instance.LocalPlayer;\r\n           
+    this.localPlayerAnimator = _player.zepetoPlayer.character.GetComponentInChildren($typeof(UnityEngine_1.Animator));\r\n       
+    });\r\n    }\r\n}\r\nexports.default = CharacterController;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiU3RhbmRfQ2hhcmVjdGVyQ29udHJvbGwuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJTdGFuZF9DaGFyZWN0ZXJDb250cm9sbC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFPLGlEQUFzRDtBQUNyRCw2RUFBdUc7QUFDdkcsNkNBQXVEO0FBR3ZELE1BQXdCLG1CQUFxQixTQUFTLHFDQUFxQjtJQUl2RSxLQUFLO1FBQ0QsSUFBSSxDQUFDLGVBQWUsQ0FBQyxPQUFPLENBQUMsV0FBVyxDQUFDLEdBQUcsRUFBRTtZQUMzQyxJQUFJLENBQUMsbUJBQW1CLENBQUMsSUFBSSxDQUFDLE9BQU8sQ0FBQyxDQUFDO1FBQzFDLENBQUMsQ0FBQyxDQUFDO1FBRWxCLGtIQUFrSDtRQUVuRywyQ0FBYSxDQUFDLFFBQVEsQ0FBQyxrQkFBa0IsQ0FBQyxXQUFXLENBQUcsR0FBRyxFQUFFO1lBQzFFLElBQUksT0FBTyxHQUFpQiwyQ0FBYSxDQUFDLFFBQVEsQ0FBQyxXQUFXLENBQUU7WUFDaEUsSUFBSSxDQUFDLG1CQUFtQixHQUFHLE9BQU8sQ0FBQyxZQUFZLENBQUMsU0FBUyxDQUFDLHNCQUFzQixTQUFDLHNCQUFRLEVBQUcsQ0FBQztRQUNoRixDQUFDLENBQUMsQ0FBQztJQUNQLENBQUM7Q0FDSjtBQWhCRCxzQ0FnQkMifQ==","assetPath":"Assets/ZepetoScripts/MultiplaySync/Player/Stand_CharecterControll.ts","manifest":{"properties":[{"assembly":"UnityEngine.UI","name":"playStandButton","type":"UnityEngine.UI.Button","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"UnityEngine.AnimationModule","name":"localPlayerAnimator","type":"UnityEngine.Animator","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]}],"name":"CharacterController","description":""},"isCompiled":true}'
+  typescriptHash: 38c8e68a26841566a80a15358eca3102
+  onlyWriteTrigger: 0

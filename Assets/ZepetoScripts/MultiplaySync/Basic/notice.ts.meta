@@ -1,0 +1,33 @@
+fileFormatVersion: 2
+guid: 992dfd552757657479a3a509d451a32f
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: "{\"source\":\"\\\"use strict\\\";\\r\\nObject.defineProperty(exports,
+    \\\"__esModule\\\", { value: true });\\r\\nconst ZEPETO_Script_1 = require(\\\"ZEPETO.Script\\\");\\r\\nclass
+    PanelOpen extends ZEPETO_Script_1.ZepetoScriptBehaviour {\\r\\n    constructor()
+    {\\r\\n        super(...arguments);\\r\\n        this.openState = true;\\r\\n   
+    }\\r\\n    Start() {\\r\\n        //When Button Click\\r\\n        this.myButton.onClick.AddListener(()
+    => {\\r\\n            if (this.openState) {\\r\\n                this.targetPanel.SetActive(false);\\r\\n               
+    this.openState = false;\\r\\n            }\\r\\n            else {\\r\\n               
+    this.targetPanel.SetActive(true);\\r\\n                this.openState = true;\\r\\n           
+    }\\r\\n        });\\r\\n    }\\r\\n}\\r\\nexports.default = PanelOpen;\\r\\n//
+    \uBC84\uD2BC \uC774\uB984=my    \uD310\uB12C\uC744...targetPanel \uC744 \uAC8C\uC784
+    \uC624\uBE0C\uC81D\uD2B8\uB85C..\uB9CC\uB4E4\uAE30\\r\\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibm90aWNlLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsibm90aWNlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQUEsaURBQXFEO0FBSXJELE1BQXFCLFNBQVUsU0FBUSxxQ0FBcUI7SUFBNUQ7O1FBSVksY0FBUyxHQUFhLElBQUksQ0FBQztJQWdCdkMsQ0FBQztJQWRHLEtBQUs7UUFFRCxtQkFBbUI7UUFDbkIsSUFBSSxDQUFDLFFBQVEsQ0FBQyxPQUFPLENBQUMsV0FBVyxDQUFDLEdBQUUsRUFBRTtZQUNsQyxJQUFHLElBQUksQ0FBQyxTQUFTLEVBQUM7Z0JBQ2QsSUFBSSxDQUFDLFdBQVcsQ0FBQyxTQUFTLENBQUMsS0FBSyxDQUFDLENBQUM7Z0JBQ2xDLElBQUksQ0FBQyxTQUFTLEdBQUcsS0FBSyxDQUFDO2FBQzFCO2lCQUNHO2dCQUNBLElBQUksQ0FBQyxXQUFXLENBQUMsU0FBUyxDQUFDLElBQUksQ0FBQyxDQUFDO2dCQUNqQyxJQUFJLENBQUMsU0FBUyxHQUFHLElBQUksQ0FBQzthQUN6QjtRQUNMLENBQUMsQ0FBQyxDQUFDO0lBQ1AsQ0FBQztDQUNKO0FBcEJELDRCQW9CQztBQUlELGdEQUFnRCJ9\",\"assetPath\":\"Assets/ZepetoScripts/MultiplaySync/Basic/notice.ts\",\"manifest\":{\"properties\":[{\"assembly\":\"UnityEngine.UI\",\"name\":\"myButton\",\"type\":\"UnityEngine.UI.Button\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"UnityEngine.CoreModule\",\"name\":\"targetPanel\",\"type\":\"UnityEngine.GameObject\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]}],\"name\":\"PanelOpen\",\"description\":\"\"},\"isCompiled\":true}"
+  typescriptHash: f9280c005cce07684deb9358708fb6e8
+  onlyWriteTrigger: 0

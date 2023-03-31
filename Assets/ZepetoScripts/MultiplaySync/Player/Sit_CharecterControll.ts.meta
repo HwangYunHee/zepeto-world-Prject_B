@@ -1,0 +1,32 @@
+fileFormatVersion: 2
+guid: 29a081dc6580d4b469a9bd3df7ab76e0
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: '{"source":"\"use strict\";\r\nObject.defineProperty(exports, \"__esModule\",
+    { value: true });\r\nconst ZEPETO_Script_1 = require(\"ZEPETO.Script\");\r\nconst
+    ZEPETO_Character_Controller_1 = require(\"ZEPETO.Character.Controller\");\r\nconst
+    UnityEngine_1 = require(\"UnityEngine\");\r\nclass CharacterController extends
+    ZEPETO_Script_1.ZepetoScriptBehaviour {\r\n    Start() {\r\n        this.playSitButton.onClick.AddListener(()
+    => {\r\n            this.localPlayerAnimator.Play(\"Sit\");\r\n        });\r\n       
+    ZEPETO_Character_Controller_1.ZepetoPlayers.instance.OnAddedLocalPlayer.AddListener(()
+    => {\r\n            let _player = ZEPETO_Character_Controller_1.ZepetoPlayers.instance.LocalPlayer;\r\n           
+    this.localPlayerAnimator = _player.zepetoPlayer.character.GetComponentInChildren($typeof(UnityEngine_1.Animator));\r\n       
+    });\r\n    }\r\n}\r\nexports.default = CharacterController;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiU2l0X0NoYXJlY3RlckNvbnRyb2xsLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiU2l0X0NoYXJlY3RlckNvbnRyb2xsLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQU8saURBQXNEO0FBQ3JELDZFQUF1RztBQUN2Ryw2Q0FBdUQ7QUFHdkQsTUFBd0IsbUJBQXFCLFNBQVMscUNBQXFCO0lBSXZFLEtBQUs7UUFDRCxJQUFJLENBQUMsYUFBYSxDQUFDLE9BQU8sQ0FBQyxXQUFXLENBQUMsR0FBRyxFQUFFO1lBQ3pDLElBQUksQ0FBQyxtQkFBbUIsQ0FBQyxJQUFJLENBQUMsS0FBSyxDQUFDLENBQUM7UUFDeEMsQ0FBQyxDQUFDLENBQUM7UUFHSCwyQ0FBYSxDQUFDLFFBQVEsQ0FBQyxrQkFBa0IsQ0FBQyxXQUFXLENBQUcsR0FBRyxFQUFFO1lBQzFFLElBQUksT0FBTyxHQUFpQiwyQ0FBYSxDQUFDLFFBQVEsQ0FBQyxXQUFXLENBQUU7WUFDaEUsSUFBSSxDQUFDLG1CQUFtQixHQUFHLE9BQU8sQ0FBQyxZQUFZLENBQUMsU0FBUyxDQUFDLHNCQUFzQixTQUFDLHNCQUFRLEVBQUcsQ0FBQztRQUNoRixDQUFDLENBQUMsQ0FBQztJQUNQLENBQUM7Q0FDSjtBQWZELHNDQWVDIn0=","assetPath":"Assets/ZepetoScripts/MultiplaySync/Player/Sit_CharecterControll.ts","manifest":{"properties":[{"assembly":"UnityEngine.UI","name":"playSitButton","type":"UnityEngine.UI.Button","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"UnityEngine.AnimationModule","name":"localPlayerAnimator","type":"UnityEngine.Animator","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]}],"name":"CharacterController","description":""},"isCompiled":true}'
+  typescriptHash: 6cda8984bb8d883fb39ab4ce4a97034b
+  onlyWriteTrigger: 0

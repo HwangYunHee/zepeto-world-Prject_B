@@ -1,0 +1,32 @@
+fileFormatVersion: 2
+guid: d2cf9e6dd51ea28478d8e6cd85f4d0fc
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: '{"source":"\"use strict\";\r\nObject.defineProperty(exports, \"__esModule\",
+    { value: true });\r\nconst ZEPETO_Script_1 = require(\"ZEPETO.Script\");\r\nconst
+    UnityEngine_1 = require(\"UnityEngine\");\r\nconst PlayerSync_1 = require(\"../Player/PlayerSync\");\r\nclass
+    GestureTrigger extends ZEPETO_Script_1.ZepetoScriptBehaviour {\r\n    //   @SerializeField()
+    private m_exGestures: UnityEngine.AnimationClip[] = [];\r\n    //    private
+    m_gestureCoroutine:Coroutine;\r\n    //Gesture testcode\r\n    OnTriggerEnter(coll)
+    {\r\n        if (!coll.GetComponent($typeof(PlayerSync_1.default))?.isLocal)\r\n           
+    return;\r\n        coll.GetComponent($typeof(PlayerSync_1.default)).zepetoPlayer.character.SetGesture(this.m_exGestures);\r\n   
+    }\r\n}\r\nexports.default = GestureTrigger;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiR2V0QW5pX1RFU1QuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJHZXRBbmlfVEVTVC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFBLGlEQUFxRDtBQUNyRCw2Q0FBdUQ7QUFHdkQscURBQThDO0FBRTlDLE1BQXFCLGNBQWUsU0FBUSxxQ0FBcUI7SUFNakUsOEVBQThFO0lBQzlFLDJDQUEyQztJQUV2QyxrQkFBa0I7SUFDVixjQUFjLENBQUMsSUFBYztRQUNqQyxJQUFHLENBQUMsSUFBSSxDQUFDLFlBQVksU0FBQyxvQkFBVSxFQUFHLEVBQUUsT0FBTztZQUN4QyxPQUFPO1FBQ1YsSUFBSSxDQUFDLFlBQVksU0FBQyxvQkFBVSxHQUFJLFlBQVksQ0FBQyxTQUFTLENBQUMsVUFBVSxDQUFDLElBQUksQ0FBQyxZQUFZLENBQUMsQ0FBQztJQUMxRixDQUFDO0NBR0o7QUFqQkQsaUNBaUJDIn0=","assetPath":"Assets/ZepetoScripts/MultiplaySync/Sample
+    Code/GetAni_TEST.ts","manifest":{"properties":[{"assembly":"UnityEngine.AnimationModule","name":"m_exGestures","type":"UnityEngine.AnimationClip","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[{"name":"SerializeField","args":[]}]}],"name":"GestureTrigger","description":""},"isCompiled":true}'
+  typescriptHash: 7d76b96e8ba5f55d73cd394ba5815c62
+  onlyWriteTrigger: 0

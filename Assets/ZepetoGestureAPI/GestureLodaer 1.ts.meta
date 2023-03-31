@@ -1,0 +1,74 @@
+fileFormatVersion: 2
+guid: 0e1d933ec8296464a8de527fe4fc75b0
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: '{"source":"\"use strict\";\r\nObject.defineProperty(exports, \"__esModule\",
+    { value: true });\r\nconst ZEPETO_Script_1 = require(\"ZEPETO.Script\");\r\nconst
+    ZEPETO_Character_Controller_1 = require(\"ZEPETO.Character.Controller\");\r\nconst
+    ZEPETO_World_1 = require(\"ZEPETO.World\");\r\nconst UnityEngine_UI_1 = require(\"UnityEngine.UI\");\r\nconst
+    UnityEngine_1 = require(\"UnityEngine\");\r\nconst Thumbnail_1 = require(\"./Thumbnail\");\r\nconst
+    ZEPETO_Multiplay_1 = require(\"ZEPETO.Multiplay\");\r\nconst CancelMotion = \"\";\r\nclass
+    GestureLoaderMultiPlay extends ZEPETO_Script_1.ZepetoScriptBehaviour {\r\n   
+    constructor() {\r\n        super(...arguments);\r\n        this.contents = [];\r\n       
+    this.thumbnails = [];\r\n        this._count = 50;\r\n        this._contentsMap
+    = new Map();\r\n    }\r\n    Start() {\r\n        // Creating a Character\r\n       
+    ZEPETO_Character_Controller_1.ZepetoPlayers.instance.OnAddedLocalPlayer.AddListener(()
+    => {\r\n            this._myCharacter = ZEPETO_Character_Controller_1.ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.character;\r\n           
+    // In order to take a thumbnail with my character, You need to request the content
+    after the character is created.\r\n            this.ContentRequest();\r\n       
+    });\r\n        // For MultiPlay\r\n        this.multiplay.add_RoomCreated((room)
+    => {\r\n            this._room = room;\r\n            // Receive user''s gesture
+    information from the server\r\n            this._room.AddMessageHandler(\"OnChangeGesture\",
+    (message) => {\r\n                let playerGestureInfo = {\r\n                   
+    sessionId: message.sessionId,\r\n                    gestureId: message.gestureId\r\n               
+    };\r\n                this.LoadAnimation(playerGestureInfo);\r\n            });\r\n       
+    });\r\n    }\r\n    // 1. Receive content from the server\r\n    ContentRequest()
+    {\r\n        // All Type Request\r\n        ZEPETO_World_1.ZepetoWorldContent.RequestOfficialContentList(ZEPETO_World_1.OfficialContentType.All,
+    contents => {\r\n            this.contents = contents;\r\n            for (let
+    i = 0; i < this._count; i++) {\r\n                if (!this.contents[i].IsDownloadedThumbnail)
+    {\r\n                    // Take a thumbnail photo using my character\r\n                   
+    this.contents[i].DownloadThumbnail(this._myCharacter, () => {\r\n                       
+    this.CreateThumbnailObjcet(this.contents[i]);\r\n                    });\r\n               
+    }\r\n                else {\r\n                    this.CreateThumbnailObjcet(this.contents[i]);\r\n               
+    }\r\n            }\r\n        });\r\n    }\r\n    // 2. Creating Thumbnail Objects\r\n   
+    CreateThumbnailObjcet(content) {\r\n        const newThumb = UnityEngine_1.GameObject.Instantiate(this._prefThumb,
+    this._contentsParent);\r\n        newThumb.GetComponent($typeof(Thumbnail_1.default)).content
+    = content;\r\n        // Create a dictionary to find content with a content Id\r\n       
+    this._contentsMap.set(content.Id, content);\r\n        // Button Listener for
+    each thumbnail\r\n        newThumb.GetComponent($typeof(UnityEngine_UI_1.Button)).onClick.AddListener(()
+    => {\r\n            this.SendMyGesture(content.Id);\r\n        });\r\n       
+    // thimnail list\r\n        this.thumbnails.push(newThumb);\r\n    }\r\n    //
+    For MultiPlay\r\n    // Send clicked gesture information to the server\r\n   
+    SendMyGesture(gestureId) {\r\n        const data = new ZEPETO_Multiplay_1.RoomData();\r\n       
+    data.Add(\"gestureId\", gestureId);\r\n        this._room.Send(\"OnChangeGesture\",
+    data.GetObject());\r\n    }\r\n    // 3. Loading Animation\r\n    LoadAnimation(playerGestureInfo)
+    {\r\n        if (!ZEPETO_Character_Controller_1.ZepetoPlayers.instance.HasPlayer(playerGestureInfo.sessionId))
+    {\r\n            console.log(\"Player does not exist\");\r\n            return;\r\n       
+    }\r\n        const zepetoPlayer = ZEPETO_Character_Controller_1.ZepetoPlayers.instance.GetPlayer(playerGestureInfo.sessionId).character;\r\n       
+    if (playerGestureInfo.gestureId == CancelMotion) {\r\n            zepetoPlayer.CancelGesture();\r\n           
+    return;\r\n        }\r\n        else if (!this._contentsMap.has(playerGestureInfo.gestureId))
+    {\r\n            console.log(\"Resource not yet loaded\");\r\n            return;\r\n       
+    }\r\n        const content = this._contentsMap.get(playerGestureInfo.gestureId);\r\n       
+    // Verify animation load\r\n        if (!content.IsDownloadedAnimation) {\r\n           
+    // If the animation has not been downloaded, download it.\r\n            content.DownloadAnimation(()
+    => {\r\n                // play animation clip\r\n                zepetoPlayer.SetGesture(content.AnimationClip);\r\n           
+    });\r\n        }\r\n        else {\r\n            zepetoPlayer.SetGesture(content.AnimationClip);\r\n       
+    }\r\n    }\r\n}\r\nexports.default = GestureLoaderMultiPlay;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiR2VzdHVyZUxvZGFlci5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIkdlc3R1cmVMb2RhZXIudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSxpREFBc0Q7QUFDdEQsNkVBQXFHO0FBQ3JHLCtDQUFvSDtBQUNwSCxtREFBd0Q7QUFDeEQsNkNBQTBFO0FBQzFFLDJDQUFvQztBQUNwQyx1REFBa0Q7QUFPbEQsTUFBTSxZQUFZLEdBQUcsRUFBVyxDQUFDO0FBRWpDLE1BQXFCLHNCQUF1QixTQUFRLHFDQUFxQjtJQUF6RTs7UUFJOEIsYUFBUSxHQUFjLEVBQUUsQ0FBQztRQUN6QixlQUFVLEdBQWlCLEVBQUUsQ0FBQztRQUU5QixXQUFNLEdBQVcsRUFBRSxDQUFDO1FBTXRDLGlCQUFZLEdBQXlCLElBQUksR0FBRyxFQUFtQixDQUFDO0lBd0c1RSxDQUFDO0lBdEdHLEtBQUs7UUFDRCx1QkFBdUI7UUFDdkIsMkNBQWEsQ0FBQyxRQUFRLENBQUMsa0JBQWtCLENBQUMsV0FBVyxDQUFDLEdBQUcsRUFBRTtZQUN2RCxJQUFJLENBQUMsWUFBWSxHQUFHLDJDQUFhLENBQUMsUUFBUSxDQUFDLFdBQVcsQ0FBQyxZQUFZLENBQUMsU0FBUyxDQUFDO1lBRTlFLGtIQUFrSDtZQUNsSCxJQUFJLENBQUMsY0FBYyxFQUFFLENBQUM7UUFDMUIsQ0FBQyxDQUFDLENBQUM7UUFFSCxnQkFBZ0I7UUFDaEIsSUFBSSxDQUFDLFNBQVMsaUJBQWdCLENBQUMsSUFBVSxFQUFFLEVBQUU7WUFDekMsSUFBSSxDQUFDLEtBQUssR0FBRyxJQUFJLENBQUM7WUFDbEIscURBQXFEO1lBQ3JELElBQUksQ0FBQyxLQUFLLENBQUMsaUJBQWlCLENBQUMsaUJBQWlCLEVBQUUsQ0FBQyxPQUEwQixFQUFFLEVBQUU7Z0JBQzNFLElBQUksaUJBQWlCLEdBQXNCO29CQUN2QyxTQUFTLEVBQUUsT0FBTyxDQUFDLFNBQVM7b0JBQzVCLFNBQVMsRUFBRSxPQUFPLENBQUMsU0FBUztpQkFDL0Is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","assetPath":"Assets/ZepetoGestureAPI/GestureLodaer.ts","manifest":{"properties":[{"assembly":"ZEPETO.World","name":"multiplay","type":"ZEPETO.World.ZepetoWorldMultiplay","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"ZEPETO.World","name":"contents","type":"ZEPETO.World.Content[]","isArray":true,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[{"name":"HideInInspector","args":[]}]},{"assembly":"UnityEngine.CoreModule","name":"thumbnails","type":"UnityEngine.GameObject[]","isArray":true,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[{"name":"HideInInspector","args":[]}]},{"assembly":"mscorlib","name":"_count","type":"System.Single","isArray":false,"initValue":["50"],"enumKeys":[],"enumValues":[],"attributes":[{"name":"SerializeField","args":[]}]},{"assembly":"UnityEngine.CoreModule","name":"_contentsParent","type":"UnityEngine.Transform","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[{"name":"SerializeField","args":[]}]},{"assembly":"UnityEngine.CoreModule","name":"_prefThumb","type":"UnityEngine.GameObject","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[{"name":"SerializeField","args":[]}]}],"name":"GestureLoaderMultiPlay","description":""},"isCompiled":true}'
+  typescriptHash: 7bc1a889e6169446ea084b0ae0e2e0a8
+  onlyWriteTrigger: 0
